@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Card } from '../../models/card.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './task-card.component.html',
-  styleUrl: './task-card.component.css'
+  styleUrl: './task-card.component.css',
 })
 export class TaskCardComponent {
   @Input() card: any;

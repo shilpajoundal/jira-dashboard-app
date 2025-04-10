@@ -1,10 +1,9 @@
 <div class="card" draggable="true" (dragstart)="onDragStart()">
-    <div class="card-header">
-        <h4>{{ card.title }}</h4>
-        <button (click)="onDelete()" title="Delete Task">&times;</button>
-    </div>
- 
+  <div class="card-header">
+    <h4>{{ card.title }}</h4>
+    <button (click)="onDelete()" title="Delete Task">&times;</button>
+  </div>
+
   <p>{{ card.description }}</p>
   <small>{{ card.createdAt | date : "short" }}</small>
-  
 </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from '../../models/list.model';
 import { TaskListComponent } from '../task-list/task-list.component';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { CommonModule } from '@angular/common';
@@ -20,20 +19,24 @@ export class TaskBoardComponent implements OnInit {
     if (typeof window !== 'undefined') {
       const storedCards = localStorage.getItem('cards');
       const storedLists = localStorage.getItem('lists');
-  
+
       this.cards = storedCards ? JSON.parse(storedCards) : [];
-      this.lists = storedLists ? JSON.parse(storedLists) : ['todo', 'inprogress', 'done'];
+      this.lists = storedLists
+        ? JSON.parse(storedLists)
+        : ['todo', 'inprogress', 'done'];
     } else {
       this.cards = [];
       this.lists = ['todo', 'inprogress', 'done'];
     }
   }
 
-
   getCardsByStatus(status: string) {
     return this.cards
-    .filter(card => card.status === status)
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      .filter((card) => card.status === status)
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
   }
 
   addCardToList(status: string): void {
@@ -45,7 +48,7 @@ export class TaskBoardComponent implements OnInit {
         title,
         description,
         status,
-        createdAt: new Date()
+        createdAt: new Date(),
       };
       this.cards = [...this.cards, newCard];
       this.saveToStorage();
@@ -59,28 +62,30 @@ export class TaskBoardComponent implements OnInit {
   onCardDrop(status: string) {
     if (this.draggedCard && this.draggedCard.status !== status) {
       this.draggedCard.status = status;
-      this.cards = [...this.cards]; 
+      this.cards = [...this.cards];
       this.saveToStorage();
     }
     this.draggedCard = null;
   }
 
   deleteCard(cardId: string): void {
-    this.cards = this.cards.filter(card => card.id !== cardId);
+    this.cards = this.cards.filter((card) => card.id !== cardId);
     this.saveToStorage();
   }
   addList(): void {
-    const newStatus = prompt('Enter list name (e.g. QA, Blocked, Review)')?.toLowerCase();
-  
+    const newStatus = prompt(
+      'Enter list name (e.g. QA, Blocked, Review)'
+    )?.toLowerCase();
+
     if (newStatus && !this.lists.includes(newStatus)) {
       this.lists.push(newStatus);
       this.saveToStorage();
     }
   }
   deleteList(status: string): void {
-    this.lists = this.lists.filter(l => l !== status);
-    this.cards = this.cards.filter(card => card.status !== status);
-  
+    this.lists = this.lists.filter((l) => l !== status);
+    this.cards = this.cards.filter((card) => card.status !== status);
+
     this.saveToStorage();
   }
 

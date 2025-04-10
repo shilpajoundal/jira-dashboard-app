@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { List } from '../../models/list.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
-import { Card } from '../../models/card.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -25,14 +23,12 @@ export class TaskListComponent {
     const mapping: any = {
       todo: 'To Do',
       inprogress: 'In Progress',
-      done: 'Done'
+      done: 'Done',
     };
-    return mapping[this.status] || this.status.charAt(0).toUpperCase() + this.status.slice(1);
-  }
-  onDeleteList(): void {
-    if (confirm(`Are you sure you want to delete the "${this.getTitle()}" list and all its cards?`)) {
-      this.deleteList.emit();
-    }
+    return (
+      mapping[this.status] ||
+      this.status.charAt(0).toUpperCase() + this.status.slice(1)
+    );
   }
 
   onAddCard(): void {
@@ -43,7 +39,17 @@ export class TaskListComponent {
     this.deleteCard.emit(cardId);
   }
 
-  handleDragStart(card: any) {
+  onDeleteList(): void {
+    if (
+      confirm(
+        `Are you sure you want to delete the "${this.getTitle()}" list and all its cards?`
+      )
+    ) {
+      this.deleteList.emit();
+    }
+  }
+
+  handleDragStart(card: any): void {
     this.cardDragStart.emit(card);
   }
 

@@ -8,10 +8,9 @@ describe('TaskBoardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskBoardComponent]
-    })
-    .compileComponents();
-    
+      imports: [TaskBoardComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TaskBoardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

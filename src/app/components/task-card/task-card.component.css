@@ -18,9 +18,9 @@ button {
   margin: 0;
 }
 p {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .card-header button {
   background: none;
   border: none;
