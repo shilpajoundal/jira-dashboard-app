@@ -1,0 +1,21 @@
+<h1>Jira Dashboard</h1>
+<hr>  
+<div class="container">
+    <div class="btn-wrapper">
+        <button class="add-list-btn" (click)="addList()">+ Add List</button>
+    </div>  
+
+  <div class="board">    
+    <app-task-list
+      *ngFor="let status of lists"
+      [status]="status"
+      [cards]="getCardsByStatus(status)"
+      (addCard)="addCardToList($event)"
+      (deleteCard)="deleteCard($event)"
+      (cardDragStart)="onCardDragStart($event)"
+      (cardDrop)="onCardDrop(status)"
+      (deleteList)="deleteList(status)"
+    >
+    </app-task-list>
+  </div>
+</div>

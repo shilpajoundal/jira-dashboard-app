@@ -1,0 +1,36 @@
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  cursor: pointer;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-header h4 {
+  margin: 0;
+}
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+.card-header button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+}
+small {
+  font-size: 10px;
+  color: #666;
+  text-align: right;
+}

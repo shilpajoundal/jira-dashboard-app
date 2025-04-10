@@ -1,0 +1,29 @@
+<div
+  class="task-list"
+  (dragover)="allowDrop($event)"
+  (drop)="handleDrop($event)"
+>
+  <div class="list-header">
+    <h3>{{ getTitle() }}</h3>
+    <button (click)="onDeleteList()" title="Delete list">&times;</button>
+  </div>
+<hr>
+  <div class="cards">
+    <ng-container *ngIf="cards.length > 0; else noTasks">
+      <div *ngFor="let card of cards">
+        <app-task-card
+          [card]="card"
+          (delete)="onDeleteCard($event)"
+          (dragStart)="handleDragStart($event)">
+        </app-task-card>
+      </div>
+    </ng-container>
+  
+    <ng-template #noTasks>
+      <p class="no-tasks">No tasks here</p>
+    </ng-template>
+  </div>
+  <div class="btn-wrapper">
+    <button (click)="onAddCard()" class="add-task-btn">&plus;</button>
+  </div>
+</div>
